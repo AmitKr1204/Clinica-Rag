@@ -1,15 +1,17 @@
-import streamlit as st
-import requests
-import json
-from requests.auth import HTTPBasicAuth
-import datetime
-from dotenv import load_dotenv
 import os
+import datetime
+import requests
+from requests.auth import HTTPBasicAuth
+from dotenv import load_dotenv
+import streamlit as st
 
 load_dotenv()
 
 # Configuration
-API_URL = os.getenv("API_URL", "http://127.0.0.1:8000")
+try:
+    API_URL = st.secrets["API_URL"]
+except Exception:
+    API_URL = os.getenv("API_URL", "http://127.0.0.1:8000")
 
 # Set Page Config
 st.set_page_config(
